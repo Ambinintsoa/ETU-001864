@@ -13,7 +13,8 @@ import org.dhcp4java.DHCPPacket;
 
 public class DHCPServer {
     private static ServerSocket serveur;
-    private static int portListening = 1168;
+    private static int portListening = 68;
+    private static int portsender = 67;
     private static String gIPAdress = "192.185.10.30";
     private Vector<String> IPDispo;
     private int xid;
@@ -162,14 +163,17 @@ public class DHCPServer {
         DHCPServer serveur1 = new DHCPServer();
 
         try {
+            System.out.println(portListening);
+            System.out.println(portsender);
             DHCPPacket message = null;
             DHCPServer.getConfiguration("192.180.0.0/26");
             serveur1.createIPDispo();
             serveur = new ServerSocket(portListening);
             while (true) {
                 Socket client = serveur.accept();
+                Socket client1 = new Socket(client.getInetAddress(), portsender);
                 ObjectInputStream ois = new ObjectInputStream(client.getInputStream());
-                ObjectOutputStream oos = new ObjectOutputStream(client.getOutputStream());
+                ObjectOutputStream oos = new ObjectOutputStream(client1.getOutputStream());
                 DHCPmsg msg = new DHCPmsg();
                 while (true) {
 
@@ -186,6 +190,8 @@ public class DHCPServer {
                         client.close();
                         message = null;
                         client = null;
+                        client1 = null;
+
                         break;
                     }
                 }

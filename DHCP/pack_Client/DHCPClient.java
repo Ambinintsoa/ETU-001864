@@ -5,6 +5,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
+import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Enumeration;
@@ -16,8 +17,9 @@ public class DHCPClient {
     private String mac;
     private InetAddress ip;
     private int xid;
-    private static int portListening = 1168;
-    private static int portSender = 67;
+    private static int portListening = 67;
+    private static int portsender = 68;
+
     private static InetAddress host;
 
     // etablissement du packet a envoye par rapport au packet recu
@@ -42,7 +44,8 @@ public class DHCPClient {
     public static void main(String[] args) throws Exception {
 
         try {
-
+            System.out.println(portListening);
+            System.out.println(portsender);
             DHCPClient client1 = new DHCPClient();
 
             NetworkInterface network = NetworkInterface.getByInetAddress(InetAddress.getLocalHost());
@@ -55,13 +58,16 @@ public class DHCPClient {
             // having the mac Adress
             client1.mac = String.join("", sb);
             host = InetAddress.getByName("192.168.88.179");
+            // host = InetAddress.getLocalHost();
             DHCPPacket message = null;
             ObjectInputStream ois = null;
             ObjectOutputStream oos = null;
             boolean firstConversation = true;
-            Socket client = new Socket(host.getHostName(), portListening);
+            Socket client = new Socket(host.getHostName(), portsender);
+            ServerSocket serveur = new ServerSocket(portListening);
+            Socket client10 = serveur.accept();
             oos = new ObjectOutputStream(client.getOutputStream());
-            ois = new ObjectInputStream(client.getInputStream());
+            ois = new ObjectInputStream(client10.getInputStream());
             while (true) {
                 System.out.println(client.getInputStream());
                 message = (DHCPPacket) ois.readObject();
@@ -89,6 +95,8 @@ public class DHCPClient {
                         // exec le programme interne
                         main.mainRun();
                         oos.writeObject(client1.arrangement(message));
+                        client10.close();
+                        message = null;
                         break;
                     }
                 }

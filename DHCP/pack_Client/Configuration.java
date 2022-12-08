@@ -8,8 +8,8 @@ public class Configuration {
     static String adaptor_name = "WI-FI";
     static String subnet_mask = "255.255.255.0";
     static String default_gateway;
-    static String dns_1 = "8.8.8.8";
-    static String dns_2 = "8.8.4.4";
+    static String dns_1 = "196.192.32.5";
+    static String dns_2 = "41.188.9.130";
 
     public Configuration(String ip1, String subnet_mask1, String default_gateway1) {
         ip = ip1;
@@ -19,7 +19,6 @@ public class Configuration {
     }
 
     public void mainRun() {
-        System.out.println("ataony");
         String[] command = { "cmd", };
         Process p;
         try {
