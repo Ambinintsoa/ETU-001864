@@ -13,8 +13,12 @@ import org.dhcp4java.DHCPPacket;
 
 public class DHCPServer {
     private static ServerSocket serveur;
+<<<<<<< HEAD
     private static int portListening = 68;
     private static int portsender = 67;
+=======
+    private static int portListening = 1168;
+>>>>>>> parent of a8bf33c (Delete DHCP directory)
     private static String gIPAdress = "192.185.10.30";
     private Vector<String> IPDispo;
     private int xid;
@@ -163,17 +167,25 @@ public class DHCPServer {
         DHCPServer serveur1 = new DHCPServer();
 
         try {
+<<<<<<< HEAD
             System.out.println(portListening);
             System.out.println(portsender);
+=======
+>>>>>>> parent of a8bf33c (Delete DHCP directory)
             DHCPPacket message = null;
             DHCPServer.getConfiguration("192.180.0.0/26");
             serveur1.createIPDispo();
             serveur = new ServerSocket(portListening);
             while (true) {
                 Socket client = serveur.accept();
+<<<<<<< HEAD
                 Socket client1 = new Socket(client.getInetAddress(), portsender);
                 ObjectInputStream ois = new ObjectInputStream(client.getInputStream());
                 ObjectOutputStream oos = new ObjectOutputStream(client1.getOutputStream());
+=======
+                ObjectInputStream ois = new ObjectInputStream(client.getInputStream());
+                ObjectOutputStream oos = new ObjectOutputStream(client.getOutputStream());
+>>>>>>> parent of a8bf33c (Delete DHCP directory)
                 DHCPmsg msg = new DHCPmsg();
                 while (true) {
 
@@ -190,8 +202,11 @@ public class DHCPServer {
                         client.close();
                         message = null;
                         client = null;
+<<<<<<< HEAD
                         client1 = null;
 
+=======
+>>>>>>> parent of a8bf33c (Delete DHCP directory)
                         break;
                     }
                 }

@@ -8,8 +8,13 @@ public class Configuration {
     static String adaptor_name = "WI-FI";
     static String subnet_mask = "255.255.255.0";
     static String default_gateway;
+<<<<<<< HEAD
     static String dns_1 = "196.192.32.5";
     static String dns_2 = "41.188.9.130";
+=======
+    static String dns_1 = "8.8.8.8";
+    static String dns_2 = "8.8.4.4";
+>>>>>>> parent of a8bf33c (Delete DHCP directory)
 
     public Configuration(String ip1, String subnet_mask1, String default_gateway1) {
         ip = ip1;
@@ -19,6 +24,10 @@ public class Configuration {
     }
 
     public void mainRun() {
+<<<<<<< HEAD
+=======
+        System.out.println("ataony");
+>>>>>>> parent of a8bf33c (Delete DHCP directory)
         String[] command = { "cmd", };
         Process p;
         try {
