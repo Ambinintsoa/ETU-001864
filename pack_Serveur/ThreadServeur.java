@@ -66,6 +66,7 @@ public class ThreadServeur extends Thread {
             }
         } catch (Exception e) {
             // TODO: handle exception
+            System.out.println(e);
         }
     }
 }
