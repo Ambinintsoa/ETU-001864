@@ -7,3 +7,4 @@ initialize value range of IP
 initialize the host
  run with terminal.Main
 
+changement d'ip du client connectée
