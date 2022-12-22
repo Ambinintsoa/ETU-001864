@@ -59,7 +59,7 @@ public class DHCPClient {
             }
             // having the mac Adress
             client1.mac = String.join("", sb);
-            host = InetAddress.getByName(InetAddress.getLocalHost().getHostAddress());
+            host = InetAddress.getByName("192.168.197.62");
 
             // host = InetAddress.getLocalHost();
 
